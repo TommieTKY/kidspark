@@ -3,60 +3,101 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Dashboard</title>
+        <title>KidSpark - Programs Dashboard</title>
 
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="/app.css">
         <script src="/app.js"></script>        
     </head>
     <body>
-        <header class="w3-padding">
-            <h1 class="w3-text-red">Programs & Instructors Dashboard</h1>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url('/console/dashboard') }}">KidSpark</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/console/dashboard') }}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ url('/console/programs') }}">Programs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/console/instructors') }}">Instructors</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        @auth
+                            <li class="nav-item">
+                                <span class="nav-link">Welcome, {{ auth()->user()->name }}</span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/') }}">Website Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/console/logout') }}">Logout</a>
+                            </li>
+                        @endauth
+                        @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/') }}">Return to Home Page</a>
+                            </li>
+                        @endguest
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
-            @auth            
-                You are logged in as {{ auth()->user()->name }} | 
-                <a href="{{ url('/console/logout') }}">Log Out</a> |
-                <a href="{{ url('/console/dashboard') }}">Dashboard</a> |
-                <a href="{{ url('/') }}">Website Home Page</a>
-            @endauth
-            @guest
-                <a href="{{ url('/') }}">Return to My Home Page</a>
-            @endguest
-        </header>
-
-        <hr>
-
-        <section class="w3-padding">
-            <h2>Edit Programs: {{$program->title}}</h2>
+        <div class="container mt-4">
+            <h2>Edit Program: {{$program->title}}</h2>
 
             @if ($errors -> any())
-                @foreach ($errors -> all() as $error)
-                    <li class="w3-text-red">{{ $error }}</li>
-                @endforeach
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                        @foreach ($errors -> all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
             @endif
 
-            <form action="{{ route('programs.update', $program -> id) }}" method="POST"  novalidate class="w3-margin-bottom">
+            <form action="{{ route('programs.update', $program -> id) }}" method="POST" novalidate>
                 {{ csrf_field() }}
                 @method('PUT')
-                <div class="w3-margin-bottom">
-                    <label for="title">Title:</label>
-                    <input type="text" name="title" placeholder="Title" value="{{ old('title')?? $program->title}}" required>
-                    <label for="description">Description:</label>
-                    <textarea name="description" placeholder="Description…" required>{{ old('description')?? $program->description }}</textarea>
-                    <label for="image">Image:</label>
-                    <input type="text" name="image" placeholder="Image URL" value="{{ old('image')?? $program->image }}">
-                    <label for="price">Price:</label>
-                    <input type="number" name="price" placeholder="Price" value="{{ old('price')?? $program->price }}" required>
 
-                    {{-- <select name="course" id="course">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title:</label>
+                    <input type="text" class="form-control" name="title" placeholder="Title" value="{{ old('title')?? $program->title}}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description:</label>
+                    <textarea name="description" class="form-control" placeholder="Description…" required>{{ old('description')?? $program->description }}</textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image:</label>
+                    <input type="text" class="form-control" name="image" placeholder="Image URL" value="{{ old('image')?? $program->image }}">
+                </div>
+
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price:</label>
+                    <input type="number" class="form-control" name="price" placeholder="Price" value="{{ old('price')?? $program->price }}" required>
+                </div>
+
+                {{-- <select name="course" id="course">
                         @foreach ($courses as $course )
                             <option value="{{ $course -> id}}">{{ $course -> name }}</option>
                         @endforeach
-                    </select> --}}
-                </div>
-                <button type="submit" class="w3-button w3-green">Edit Program</button>
+                </select> --}}
+
+                <button type="submit" class="btn btn-primary">Update Program</button>
+                <a href="{{ route('programs.index') }}" class="btn btn-secondary">Back to Program List</a>
             </form>
-            <a href="{{ route('programs.index')}}">Back to Program List</a>
-        </section>
+        </div>
+
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
