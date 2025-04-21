@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>KidSpark - Programs Dashboard</title>
+        <title>KidSpark - Instructors Dashboard</title>
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="/app.css">
@@ -22,10 +22,10 @@
                             <a class="nav-link" href="{{ url('/console/dashboard') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{ url('/console/programs') }}">Programs</a>
+                            <a class="nav-link" href="{{ url('/console/programs') }}">Programs</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/console/instructors') }}">Instructors</a>
+                            <a class="nav-link active" href="{{ url('/console/instructors') }}">Instructors</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav">
@@ -51,49 +51,51 @@
         </nav>
 
         <div class="container mt-4">
-            <h2>Add Program</h2>
-
-            @if ($errors -> any())
-                <div class="alert alert-danger">
-                    <ul class="mb-0">
-                        @foreach ($errors -> all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
+            @if(session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session('message') }}
                 </div>
             @endif
 
-            <form action="{{ route('programs.store') }}" method="POST" novalidate>
-                {{ csrf_field() }}
-                <div class="mb-3">
-                    <label for="title" class="form-label">Title:</label>
-                    <input type="text" class="form-control" name="title" placeholder="Title" value="{{ old('title')}}" required>
-                </div>
+            <div class="d-flex mb-2">
+                <h2>Manage Instructors</h2>
+            </div>
+            <div class="d-flex mb-4">
+                <a href="{{ route('instructors.create')}}" class="btn btn-success">New Instructor</a>
+            </div>
 
-                <div class="mb-3">
-                    <label for="description" class="form-label">Description:</label>
-                    <textarea name="description" class="form-control" placeholder="Description…" required>{{ old('description') }}</textarea>
-                </div>
-
-                <div class="mb-3">
-                    <label for="image" class="form-label">Image:</label>
-                    <input type="text" class="form-control" name="image" placeholder="Image URL" value="{{ old('image') }}">
-                </div>
-
-                <div class="mb-3">
-                    <label for="price" class="form-label">Price:</label>
-                    <input type="number" class="form-control" name="price" placeholder="Price" value="{{ old('price') }}" required>
-                </div>
-
-                {{-- <select name="course" id="course">
-                        @foreach ($courses as $course )
-                            <option value="{{ $course -> id}}">{{ $course -> name }}</option>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <thead class="table-danger">
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Icon</th>
+                            <th>Bio</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($instructors as $instructor)
+                            <tr>
+                                <td>{{ $instructor->name }}</td>
+                                <td>{{ $instructor->email }}</td>
+                                <td>{{ $instructor->icon }}</td>
+                                <td>{{ $instructor->bio }}</td>
+                                <td>
+                                    <a href="{{ route('instructors.edit', $instructor->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                    <form action="{{ route('instructors.destroy', $instructor->id) }}" method="POST" class="d-inline">
+                                        {{ csrf_field() }}
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this instructor?')">Delete</button>
+                                    </form>
+                                    <!-- <a href="{{ route('instructors.show', $instructor->id) }}" class="btn btn-info btn-sm">View</a> -->
+                                </td>
+                            </tr>
                         @endforeach
-                    </select> --}}
-
-                <button type="submit" class="btn btn-primary">Add Program</button>
-                <a href="{{ route('programs.index') }}" class="btn btn-secondary">Back to Program List</a>
-            </form>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

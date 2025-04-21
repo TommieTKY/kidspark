@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>KidSpark - Programs Dashboard</title>
+        <title>KidSpark - Instructors Dashboard</title>
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="/app.css">
@@ -22,10 +22,10 @@
                             <a class="nav-link" href="{{ url('/console/dashboard') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{ url('/console/programs') }}">Programs</a>
+                            <a class="nav-link" href="{{ url('/console/programs') }}">Programs</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/console/instructors') }}">Instructors</a>
+                            <a class="nav-link active" href="{{ url('/console/instructors') }}">Instructors</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav">
@@ -51,7 +51,7 @@
         </nav>
 
         <div class="container mt-4">
-            <h2>Add Program</h2>
+            <h2>Edit Instructor: {{ $instructor->name }}</h2>
 
             @if ($errors -> any())
                 <div class="alert alert-danger">
@@ -63,36 +63,38 @@
                 </div>
             @endif
 
-            <form action="{{ route('programs.store') }}" method="POST" novalidate>
+            <form action="{{ route('instructors.update', $instructor->id) }}" method="POST" novalidate>
                 {{ csrf_field() }}
+                @method('PUT')
+                
                 <div class="mb-3">
-                    <label for="title" class="form-label">Title:</label>
-                    <input type="text" class="form-control" name="title" placeholder="Title" value="{{ old('title')}}" required>
+                    <label for="name" class="form-label">Name:</label>
+                    <input type="text" class="form-control" name="name" id="name" value="{{ old('name')?? $instructor->name }}" required {{ old('name')?? $instructor->name }}>
                 </div>
 
                 <div class="mb-3">
-                    <label for="description" class="form-label">Description:</label>
-                    <textarea name="description" class="form-control" placeholder="Description…" required>{{ old('description') }}</textarea>
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" class="form-control" name="email" id="email" value="{{ old('email', $instructor->email) }}" required>
                 </div>
 
                 <div class="mb-3">
-                    <label for="image" class="form-label">Image:</label>
-                    <input type="text" class="form-control" name="image" placeholder="Image URL" value="{{ old('image') }}">
+                    <label for="icon" class="form-label">Icon:</label>
+                    <input type="text" class="form-control" name="icon" id="icon" value="{{ old('icon', $instructor->icon) }}">
                 </div>
 
                 <div class="mb-3">
-                    <label for="price" class="form-label">Price:</label>
-                    <input type="number" class="form-control" name="price" placeholder="Price" value="{{ old('price') }}" required>
+                    <label for="bio" class="form-label">Bio:</label>
+                    <textarea class="form-control" name="bio" id="bio" rows="3" required>{{ old('bio', $instructor->bio) }}</textarea>
                 </div>
 
-                {{-- <select name="course" id="course">
-                        @foreach ($courses as $course )
-                            <option value="{{ $course -> id}}">{{ $course -> name }}</option>
+                {{-- <select name="program" id="program">
+                        @foreach ($programs as $program )
+                            <option value="{{ $program -> id}}">{{ $program -> name }}</option>
                         @endforeach
                     </select> --}}
 
-                <button type="submit" class="btn btn-primary">Add Program</button>
-                <a href="{{ route('programs.index') }}" class="btn btn-secondary">Back to Program List</a>
+                <button type="submit" class="btn btn-primary">Update Instructor</button>
+                <a href="{{ route('instructors.index') }}" class="btn btn-secondary">Back to List</a>
             </form>
         </div>
 

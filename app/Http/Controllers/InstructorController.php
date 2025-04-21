@@ -13,7 +13,9 @@ class InstructorController extends Controller
      */
     public function index()
     {
-        //
+        return view('instructors.index', [
+            'instructors' => Instructor::all(),
+        ]);
     }
 
     /**
@@ -21,7 +23,7 @@ class InstructorController extends Controller
      */
     public function create()
     {
-        //
+        return view('instructors.create')->with('instructors', Instructor::all());
     }
 
     /**
@@ -29,7 +31,9 @@ class InstructorController extends Controller
      */
     public function store(StoreInstructorRequest $request)
     {
-        //
+        $instructor = Instructor::create($request->validated());
+        return redirect()->route('instructors.index')
+            ->with('message', 'Instructor created successfully');
     }
 
     /**
@@ -37,7 +41,7 @@ class InstructorController extends Controller
      */
     public function show(Instructor $instructor)
     {
-        //
+        return view('instructors.show', compact('instructor'));
     }
 
     /**
@@ -45,7 +49,7 @@ class InstructorController extends Controller
      */
     public function edit(Instructor $instructor)
     {
-        //
+        return view('instructors.edit', compact('instructor'));
     }
 
     /**
@@ -53,7 +57,9 @@ class InstructorController extends Controller
      */
     public function update(UpdateInstructorRequest $request, Instructor $instructor)
     {
-        //
+        $instructor->update($request->validated());
+        return redirect()->route('instructors.index')
+            ->with('message', 'Instructor updated successfully');
     }
 
     /**
@@ -61,6 +67,8 @@ class InstructorController extends Controller
      */
     public function destroy(Instructor $instructor)
     {
-        //
+        Instructor::destroy($instructor->id);
+        return redirect()->route('instructors.index')
+            ->with('message', 'Instructor deleted successfully');
     }
 }

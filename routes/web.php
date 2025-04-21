@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\ConsoleController;
 use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\InstructorController;
 
 Route::get('/', function () {
     return Inertia::render('welcome');
@@ -21,6 +22,7 @@ Route::post('/console/login', [ConsoleController::class, 'login'])->middleware('
 Route::get('/console/logout', [ConsoleController::class, 'logout'])->middleware('auth');
 
 Route::resource('/console/programs', ProgramController::class)->middleware('auth');
+Route::resource('/console/instructors', InstructorController::class)->middleware('auth');
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
