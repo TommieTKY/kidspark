@@ -11,5 +11,5 @@ class Instructor extends Model
     /** @use HasFactory<\Database\Factories\InstructorFactory> */
     use HasFactory;
     // use SoftDeletes;
-    protected $fillable = ['name', 'email', 'bio'];
+    protected $fillable = ['name', 'email', 'icon', 'bio'];
 }

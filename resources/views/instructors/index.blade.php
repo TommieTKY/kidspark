@@ -80,7 +80,13 @@
                             <tr>
                                 <td>{{ $instructor->name }}</td>
                                 <td>{{ $instructor->email }}</td>
-                                <td>{{ $instructor->icon }}</td>
+                                <td>
+                                    @if ($instructor->icon)
+                                        <img src="{{ asset('storage/' . $instructor->icon) }}" width="30" alt="Icon">
+                                    @else
+                                        <span>No Icon</span>
+                                    @endif
+                                </td>
                                 <td>{{ $instructor->bio }}</td>
                                 <td>
                                     <a href="{{ route('instructors.edit', $instructor->id) }}" class="btn btn-primary btn-sm">Edit</a>

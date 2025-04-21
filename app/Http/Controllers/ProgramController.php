@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Program;
 use App\Http\Requests\StoreProgramRequest;
 use App\Http\Requests\UpdateProgramRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ProgramController extends Controller
 {
@@ -25,10 +26,16 @@ class ProgramController extends Controller
      */
     public function store(StoreProgramRequest $request)
     {
-        $program = Program::create($request->validated());
-        // $program -> instructor() -> attach($request -> instructor);
+        $validatedData = $request->validated();
+        $data = $validatedData; 
+
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('programs', 'public');
+        }
+
+        $program = Program::create($data); 
         return redirect()->route('programs.index')
-            ->with('message', 'Program has been added!');
+            ->with('message', 'Program created successfully');
     }
 
     /**
@@ -54,8 +61,19 @@ class ProgramController extends Controller
      */
     public function update(UpdateProgramRequest $request, Program $program)
     {
-        $program -> update($request -> validated());
-        return redirect() -> route('programs.index');
+        $validatedData = $request->validated();
+        $data = $validatedData; 
+
+        if ($request->hasFile('image')) {
+            if ($program->image) {
+                Storage::disk('public')->delete($program->image);
+            }
+            $data['image'] = $request->file('image')->store('programs', 'public');
+        }
+
+        $program->update($data); 
+        return redirect()->route('programs.index')
+            ->with('message', 'Program updated successfully');
     }
 
     /**

@@ -63,7 +63,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('instructors.store') }}" method="POST" novalidate>
+            <form action="{{ route('instructors.store') }}" method="POST" novalidate  enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="mb-3">
                     <label for="name" class="form-label">Name:</label>

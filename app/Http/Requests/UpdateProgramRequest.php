@@ -24,6 +24,7 @@ class UpdateProgramRequest extends FormRequest
         return [
             'title' => 'required|string|max:100',
             'description' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'price' => 'required|numeric|min:0',
         ];
     }

@@ -63,7 +63,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('programs.update', $program -> id) }}" method="POST" novalidate>
+            <form action="{{ route('programs.update', $program -> id) }}" method="POST" novalidate  enctype="multipart/form-data">
                 {{ csrf_field() }}
                 @method('PUT')
 
@@ -79,7 +79,18 @@
 
                 <div class="mb-3">
                     <label for="image" class="form-label">Image:</label>
-                    <input type="text" class="form-control" name="image" placeholder="Image URL" value="{{ old('image')?? $program->image }}">
+                    <input
+                        type="file" 
+                        class="form-control" 
+                        name="image"
+                        id="image" 
+                        accept="image/*"
+                    >
+                    @if ($program->image)
+                        <div class="mt-2">
+                            <img src="{{ asset('storage/' . $program->image) }}" width="50" alt="Current Image">
+                        </div>
+                    @endif
                 </div>
 
                 <div class="mb-3">

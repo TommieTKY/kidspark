@@ -24,7 +24,7 @@ class UpdateInstructorRequest extends FormRequest
         return [
             'name' => 'required|string',
             'email' => 'required',
-            // 'icon' => 'required|string',
+            'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'bio' => 'required|string',
         ];
     }

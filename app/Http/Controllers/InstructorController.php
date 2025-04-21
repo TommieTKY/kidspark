@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Instructor;
 use App\Http\Requests\StoreInstructorRequest;
 use App\Http\Requests\UpdateInstructorRequest;
+use Illuminate\Support\Facades\Storage;
 
 class InstructorController extends Controller
 {
@@ -29,9 +30,26 @@ class InstructorController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    // public function store(StoreInstructorRequest $request)
+    // {
+    //     if ($request->hasFile('icon')) {
+    //         $data['icon'] = $request->file('icon')->store('instructors', 'public');
+    //     }
+
+    //     $instructor = Instructor::create($request->validated());
+    //     return redirect()->route('instructors.index')
+    //         ->with('message', 'Instructor created successfully');
+    // }
     public function store(StoreInstructorRequest $request)
     {
-        $instructor = Instructor::create($request->validated());
+        $validatedData = $request->validated();
+        $data = $validatedData; 
+
+        if ($request->hasFile('icon')) {
+            $data['icon'] = $request->file('icon')->store('instructors', 'public');
+        }
+
+        $instructor = Instructor::create($data); 
         return redirect()->route('instructors.index')
             ->with('message', 'Instructor created successfully');
     }
@@ -55,9 +73,34 @@ class InstructorController extends Controller
     /**
      * Update the specified resource in storage.
      */
+    // public function update(UpdateInstructorRequest $request, Instructor $instructor)
+    // {
+    //     if ($request->hasFile('icon')) {
+    //         // delete old file
+    //         if ($instructor->icon) {
+    //             Storage::disk('public')->delete($instructor->icon);
+    //         }
+    //         // save new file
+    //         $data['icon'] = $request->file('icon')->store('instructors', 'public');
+    //     }
+
+    //     $instructor->update($request->validated());
+    //     return redirect()->route('instructors.index')
+    //         ->with('message', 'Instructor updated successfully');
+    // }
     public function update(UpdateInstructorRequest $request, Instructor $instructor)
     {
-        $instructor->update($request->validated());
+        $validatedData = $request->validated();
+        $data = $validatedData; 
+
+        if ($request->hasFile('icon')) {
+            if ($instructor->icon) {
+                Storage::disk('public')->delete($instructor->icon);
+            }
+            $data['icon'] = $request->file('icon')->store('instructors', 'public');
+        }
+
+        $instructor->update($data); 
         return redirect()->route('instructors.index')
             ->with('message', 'Instructor updated successfully');
     }

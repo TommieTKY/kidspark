@@ -80,7 +80,13 @@
                             <tr>
                             <td>{{ $program->title}}</td>
                             <td>{{ $program->description}}</td>
-                            <td>{{ $program->image}}</td>
+                            <td>
+                                @if ($program->image)
+                                    <img src="{{ asset('storage/' . $program->image) }}" width="30" alt="Image">
+                                @else
+                                    <span>No Image</span>
+                                @endif
+                            </td>
                             <td>${{ $program->price}}</td>
                             <td>
                                 <a href="{{ route('programs.edit', $program->id)}}" class="btn btn-primary btn-sm">Edit</a>
