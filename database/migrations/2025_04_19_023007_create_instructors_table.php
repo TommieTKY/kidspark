@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('icon')->nullable();
             $table->text('bio')->nullable();
-            // $table->foreignId('program_id')->nullable();
+            $table->foreignId('program_id')->nullable();
             $table->timestamps();
         });
     }

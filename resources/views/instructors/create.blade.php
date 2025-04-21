@@ -77,7 +77,13 @@
 
                 <div class="mb-3">
                     <label for="icon" class="form-label">Icon:</label>
-                    <input type="text" class="form-control" name="icon" id="icon" value="{{ old('icon') }}">
+                    <input 
+                        type="file" 
+                        class="form-control" 
+                        name="icon" 
+                        id="icon" 
+                        accept="image/*"
+                    >
                 </div>
 
                 <div class="mb-3">
