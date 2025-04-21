@@ -85,11 +85,22 @@
                     <textarea class="form-control" name="bio" id="bio" rows="3" required>{{ old('bio') }}</textarea>
                 </div>
 
-                {{-- <select name="program" id="program">
-                        @foreach ($programs as $program )
-                            <option value="{{ $program -> id}}">{{ $program -> name }}</option>
-                        @endforeach
-                    </select> --}}
+                <div>
+                    <label for="programs" class="form-label">Programs:</label>
+                    @php
+                        $checked = old('programs');
+                    @endphp
+
+                    @foreach($programs as $program)
+                            <input
+                                type="checkbox"
+                                name="programs[]"
+                                value="{{ $program->id }}"
+                            >
+                            {{ $program->title }}
+                        </label>
+                    @endforeach
+                </div>
 
                 <button type="submit" class="btn btn-primary">Add Instructor</button>
                 <a href="{{ route('instructors.index') }}" class="btn btn-secondary">Back to List</a>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Program;
+use App\Models\Instructor;
 use App\Http\Requests\StoreProgramRequest;
 use App\Http\Requests\UpdateProgramRequest;
 
@@ -17,50 +18,37 @@ class ProgramController extends Controller
 
     public function create()
     {
-        return view('programs.create')->with('programs', Program::all());
+        return view('programs.create')->with('instructors', Instructor::all());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreProgramRequest $request)
     {
         $program = Program::create($request->validated());
-        // $program -> instructor() -> attach($request -> instructor);
+        $program->instructors()->attach($request->input('instructors'));
         return redirect()->route('programs.index')
             ->with('message', 'Program has been added!');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Program $program)
     {
-        //
+        $program->load('instructors');
+        return view('programs.show', compact('program'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Program $program)
     {
-        return view('programs.edit', [
-            'program' => $program,
-        ]);
+        return view('programs.edit', compact('program'))
+            ->with('instructors', Instructor::all());
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UpdateProgramRequest $request, Program $program)
     {
         $program -> update($request -> validated());
-        return redirect() -> route('programs.index');
+        $program->instructors()->sync($request->input('instructors'));
+        return redirect() -> route('programs.index')
+            ->with('message', 'Program has been updated!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Program $program)
     {
         // ddd($program); dump die debug

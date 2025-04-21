@@ -26,6 +26,8 @@ class UpdateInstructorRequest extends FormRequest
             'email' => 'required|email|max:255',
             // 'icon' => 'required|string',
             'bio' => 'required|string',
+            'programs'   => 'required|array',
+            'programs.*' => 'exists:programs,id',
         ];
     }
 }

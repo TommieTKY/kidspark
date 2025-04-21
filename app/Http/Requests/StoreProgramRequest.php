@@ -25,6 +25,8 @@ class StoreProgramRequest extends FormRequest
             'title' => 'required|string|max:100',
             'description' => 'required|string',
             'price' => 'required|numeric|min:0',
+            'instructors'   => 'required|array',
+            'instructors.*' => 'exists:instructors,id',
         ];
     }
 }

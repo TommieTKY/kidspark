@@ -87,11 +87,23 @@
                     <input type="number" class="form-control" name="price" placeholder="Price" value="{{ old('price')?? $program->price }}" required>
                 </div>
 
-                {{-- <select name="course" id="course">
-                        @foreach ($courses as $course )
-                            <option value="{{ $course -> id}}">{{ $course -> name }}</option>
-                        @endforeach
-                </select> --}}
+                <div>
+                    <label for="instructors" class="form-label">Instructors:</label>
+                    @php
+                        $checked = old('instructors', $program->instructors->pluck('id')->toArray());
+                    @endphp
+
+                    @foreach($instructors as $instructor)
+                            <input
+                                type="checkbox"
+                                name="instructors[]"
+                                value="{{ $instructor->id }}"
+                                {{ in_array($instructor->id, $checked) ? 'checked' : '' }}
+                            >
+                            {{ $instructor->name }}
+                        </label>
+                    @endforeach
+                </div>
 
                 <button type="submit" class="btn btn-primary">Update Program</button>
                 <a href="{{ route('programs.index') }}" class="btn btn-secondary">Back to Program List</a>

@@ -50,63 +50,21 @@
             </div>
         </nav>
 
-        <div class="container mt-4">
-            <h2>Add Program</h2>
-
-            @if ($errors -> any())
-                <div class="alert alert-danger">
-                    <ul class="mb-0">
-                        @foreach ($errors -> all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-
-            <form action="{{ route('programs.store') }}" method="POST" novalidate>
-                {{ csrf_field() }}
-                <div class="mb-3">
-                    <label for="title" class="form-label">Title:</label>
-                    <input type="text" class="form-control" name="title" placeholder="Title" value="{{ old('title')}}" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="description" class="form-label">Description:</label>
-                    <textarea name="description" class="form-control" placeholder="Description…" required>{{ old('description') }}</textarea>
-                </div>
-
-                <div class="mb-3">
-                    <label for="image" class="form-label">Image:</label>
-                    <input type="text" class="form-control" name="image" placeholder="Image URL" value="{{ old('image') }}">
-                </div>
-
-                <div class="mb-3">
-                    <label for="price" class="form-label">Price:</label>
-                    <input type="number" class="form-control" name="price" placeholder="Price" value="{{ old('price') }}" required>
-                </div>
-
-                <div>
-                    <label for="instructors" class="form-label">Instructors:</label>
-                    @php
-                        $checked = old('instructors');
-                    @endphp
-
-                    @foreach($instructors as $instructor)
-                            <input
-                                type="checkbox"
-                                name="instructors[]"
-                                value="{{ $instructor->id }}"
-                            >
-                            {{ $instructor->name }}
-                        </label>
-                    @endforeach
-                </div>
-
-                <button type="submit" class="btn btn-primary">Add Program</button>
-                <a href="{{ route('programs.index') }}" class="btn btn-secondary">Back to Program List</a>
-            </form>
-        </div>
+        <main>
+            <h1>{{ $program->title }}</h1>
+            <p>{{ $program->description }}</p>
+            <p>{{ $program->image }}</p>
+            <p>{{ $program->price }}</p>
+            <ul>
+                @forelse($program->instructors as $instructor)
+                    <li>{{ $instructor->name }}</li>
+                @empty
+                    <li>No instructors assigned.</li>
+                @endforelse
+            </ul>
+        </main>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     </body>
 </html>

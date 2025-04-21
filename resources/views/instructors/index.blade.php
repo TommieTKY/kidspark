@@ -78,7 +78,7 @@
                     <tbody>
                         @foreach($instructors as $instructor)
                             <tr>
-                                <td>{{ $instructor->name }}</td>
+                                <td><a href="{{ route('instructors.show', $instructor) }}">{{ $instructor->name}}</a></td>
                                 <td>{{ $instructor->email }}</td>
                                 <td>{{ $instructor->icon }}</td>
                                 <td>{{ $instructor->bio }}</td>

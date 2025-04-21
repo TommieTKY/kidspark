@@ -78,7 +78,7 @@
                     <tbody>
                         @foreach($programs as $program)
                             <tr>
-                            <td>{{ $program->title}}</td>
+                            <td><a href="{{ route('programs.show', $program) }}">{{ $program->title}}</a></td>
                             <td>{{ $program->description}}</td>
                             <td>{{ $program->image}}</td>
                             <td>${{ $program->price}}</td>
