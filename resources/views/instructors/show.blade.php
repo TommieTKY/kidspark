@@ -64,8 +64,8 @@
                             </div>
                             <div class="card-body">
                                 <h1>{{ $instructor->name }}</h1>
+                                <p class="card-text">{{ $instructor->bio }}</p>
                                 <p class="card-text">Email: {{ $instructor->email }}</p>
-                                <p class="card-text">Bio: {{ $instructor->bio }}</p>
                                 <p class="card-text">Programs:</p>
                                 <ul class="list-group mb-3">
                                     @forelse($instructor->programs as $program)

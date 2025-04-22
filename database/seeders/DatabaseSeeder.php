@@ -23,10 +23,9 @@ class DatabaseSeeder extends Seeder
             // pw: password
         ]);
 
+        // User::factory(3)->create();
         Program::factory(10)->create();
         Instructor::factory(10)->create();
-        // Program::factory()->count(10)->create();
-        // Instructor::factory()->count(10)->create();
 
     }
 }

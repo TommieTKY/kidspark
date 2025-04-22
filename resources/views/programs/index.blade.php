@@ -67,7 +67,7 @@
                 @foreach($programs as $program)
                     <div class="col">
                         <div class="card h-100">
-                            <h1 class="card-header bg-warning-subtle fs-3">{{ $program->title }}</h1>
+                            <h1 class="card-header bg-danger-subtle fs-3">{{ $program->title }}</h1>
 
                             <div class="pt-4 text-center">
                             @if ($program->image)
@@ -97,36 +97,6 @@
                 @endforeach                
             </div>
         </main>
-
-
-            {{-- <div class="row mt-3">
-                @foreach($programs as $program)
-                    <div class="col-sm-4">
-                        <div class="card shadow-lg rounded-4 p-4 mt-4" style="min-height: 580px;">
-                            <div class="card-body">
-                                @if ($program->image)
-                                    <img src="{{ asset('storage/' . $program->image) }}" class="card-img-top mb-2" alt="Program Image">
-                                @else
-                                    <span>No Image</span>
-                                @endif
-                                <h3 class="card-text text-center">
-                                    {{ $program->title }}
-                                </h3>
-                                <div class="card-text text-center">
-                                    <p class="card-text">{{ $program->description }}</p>
-                                    <p class="card-text">${{ $program->price }}</p>
-                                    <a href="{{ route('programs.edit', $program->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                                    <form action="{{ route('programs.destroy', $program->id) }}" method="POST" class="d-inline">
-                                        {{ csrf_field() }}
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this program?')">Delete</button>
-                                    </form>
-                                    <a href="{{ route('programs.show', $program->id) }}" class="btn btn-info btn-sm">View</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            </div>     --}}
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
