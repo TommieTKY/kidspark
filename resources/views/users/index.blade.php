@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>KidSpark - Dashboard</title>
+        <title>KidSpark - Programs Dashboard</title>
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="/app.css">
@@ -19,10 +19,10 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{ url('/console/dashboard') }}">Home</a>
+                            <a class="nav-link" href="{{ url('/console/dashboard') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/console/programs') }}">Programs</a>
+                            <a class="nav-link active" href="{{ url('/console/programs') }}">Programs</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/console/instructors') }}">Instructors</a>
@@ -51,39 +51,44 @@
         </nav>
 
         <div class="container mt-4">
-            <h1 class="display-6">Programs & Instructors Dashboard</h1>
-            <div class="d-flex justify-content-center">
-                <div class="row mt-4">
-                    <div class="col-sm-4">
-                        <div class="card p-4 text-bg-light">
-                            <div class="card-body">
-                                <h2 class="card-title">Manage Programs</h2>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="/console/programs" class="btn btn-danger">Manage Programs</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="card p-4 text-bg-light">
-                            <div class="card-body">
-                                <h2 class="card-title">Manage Instructors</h2>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="/console/instructors" class="btn btn-danger">Manage Instructors</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="card p-4 text-bg-light">
-                            <div class="card-body">
-                                <h2 class="card-title">Manage Users</h2>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="/console/users" class="btn btn-danger">Manage Users</a>
-                            </div>
-                        </div>
-                    </div>
+            @if(session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session('message') }}
                 </div>
-            </div>
+            @endif
 
+            <div class="d-flex mb-2">
+                <h2>Manage Programs</h2>
+            </div>
+            <a href="{{ route('programs.create')}}" class="btn btn-danger">New Program</a>
+            <div class="row mt-3">
+                @foreach($users as $user)
+                    <div class="col-sm-4">
+                        <div class="card shadow-lg rounded-4 p-4 mt-4" style="min-height: 580px;">
+                            <div class="card-body">
+                                <h3 class="card-text text-center">
+                                    {{ $user->name }}
+                                </h3>
+                                <div class="card-text text-center">
+                                    <p class="card-text">{{ $user->email }}</p>
+
+
+                                    {{-- <a href="{{ route('programs.edit', $program->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                    <form action="{{ route('programs.destroy', $program->id) }}" method="POST" class="d-inline">
+                                        {{ csrf_field() }}
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this program?')">Delete</button>
+                                    </form> --}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            
         </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     </body>
 </html>

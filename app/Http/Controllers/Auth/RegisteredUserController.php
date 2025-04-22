@@ -48,4 +48,13 @@ class RegisteredUserController extends Controller
 
         return to_route('dashboard');
     }
+
+    
+    
+    public function index(): Response
+    {
+        return view('users.index', [
+            'users' => User::all(),
+        ]);
+    }
 }
