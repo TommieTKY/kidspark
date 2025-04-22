@@ -8,6 +8,7 @@ class ConsoleController extends Controller
 {
     public function dashboard()
     {
+
         return view('console.dashboard');
     }
 
@@ -37,5 +38,10 @@ class ConsoleController extends Controller
     {
         auth()->logout();
         return redirect('/');
+    }
+
+    public function user()
+    {
+        return view('console.user');
     }
 }
