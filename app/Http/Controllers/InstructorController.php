@@ -6,6 +6,7 @@ use App\Models\Instructor;
 use App\Models\Program;
 use App\Http\Requests\StoreInstructorRequest;
 use App\Http\Requests\UpdateInstructorRequest;
+use Illuminate\Support\Facades\Storage;
 
 class InstructorController extends Controller
 {
@@ -23,7 +24,13 @@ class InstructorController extends Controller
 
     public function store(StoreInstructorRequest $request)
     {
-        $instructor = Instructor::create($request->validated());
+        $data =  $request->validated();
+
+        if ($request->hasFile('icon')) {
+            $data['icon'] = $request->file('icon')->store('instructors', 'public');
+        }
+
+        $instructor = Instructor::create($data); 
         $instructor->programs()->attach($request->input('programs'));
         return redirect()->route('instructors.index')
             ->with('message', 'Instructor created successfully');
@@ -43,7 +50,16 @@ class InstructorController extends Controller
 
     public function update(UpdateInstructorRequest $request, Instructor $instructor)
     {
-        $instructor->update($request->validated());
+        $data = $request->validated();
+
+        if ($request->hasFile('icon')) {
+            if ($instructor->icon) {
+                Storage::disk('public')->delete($instructor->icon);
+            }
+            $data['icon'] = $request->file('icon')->store('instructors', 'public');
+        }
+
+        $instructor->update($data); 
         $instructor->programs()->sync($request->input('programs'));
         return redirect()->route('instructors.index')
             ->with('message', 'Instructor updated successfully');

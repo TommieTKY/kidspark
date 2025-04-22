@@ -22,9 +22,9 @@ class StoreInstructorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            // 'icon' => 'required|string',
+            'name' => 'required|string',
+            'email' => 'required',
+            'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'bio' => 'required|string',
             'programs'   => 'required|array',
             'programs.*' => 'exists:programs,id',

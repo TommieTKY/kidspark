@@ -14,10 +14,10 @@ class Program extends Model
 {
     use HasFactory;
     // use SoftDeletes;
-    protected $fillable = ['title', 'description', 'price'];
 
     public function instructors(): BelongsToMany
     {
     return $this->belongsToMany(Instructor::class);
     }
+    protected $fillable = ['title', 'description', 'image', 'price'];
 }

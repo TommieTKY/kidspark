@@ -63,7 +63,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('instructors.store') }}" method="POST" novalidate>
+            <form action="{{ route('instructors.store') }}" method="POST" novalidate  enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="mb-3">
                     <label for="name" class="form-label">Name:</label>
@@ -77,7 +77,13 @@
 
                 <div class="mb-3">
                     <label for="icon" class="form-label">Icon:</label>
-                    <input type="text" class="form-control" name="icon" id="icon" value="{{ old('icon') }}">
+                    <input 
+                        type="file" 
+                        class="form-control" 
+                        name="icon" 
+                        id="icon" 
+                        accept="image/*"
+                    >
                 </div>
 
                 <div class="mb-3">

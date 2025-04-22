@@ -11,7 +11,7 @@ class Instructor extends Model
 {
     use HasFactory;
     // use SoftDeletes;
-    protected $fillable = ['name', 'email', 'bio'];
+    protected $fillable = ['name', 'email', 'icon', 'bio'];
 
     public function programs(): BelongsToMany
     {
