@@ -32,7 +32,7 @@ class ProgramController extends Controller
 
         $program = Program::create($data); 
         $program->instructors()->attach($request->input('instructors'));
-        return redirect()->route('programs.index')
+        return redirect()->route('programs.show', $program->id)
             ->with('message', 'Program created successfully');
     }
 

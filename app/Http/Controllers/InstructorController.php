@@ -32,7 +32,7 @@ class InstructorController extends Controller
 
         $instructor = Instructor::create($data); 
         $instructor->programs()->attach($request->input('programs'));
-        return redirect()->route('instructors.index')
+        return redirect()->route('instructors.show', $instructor->id)
             ->with('message', 'Instructor created successfully');
     }
 
@@ -61,7 +61,7 @@ class InstructorController extends Controller
 
         $instructor->update($data); 
         $instructor->programs()->sync($request->input('programs'));
-        return redirect()->route('instructors.index')
+        return redirect()->route('instructors.show', $instructor->id)
             ->with('message', 'Instructor updated successfully');
     }
 

@@ -7,6 +7,7 @@
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="/app.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" integrity="sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD" crossorigin="anonymous">
         <script src="/app.js"></script>        
     </head>
     <body>
@@ -55,11 +56,13 @@
                 <div class="d-flex justify-content-center">
                     <div class="card col-lg-6 shadow-lg rounded-4 p-4">
                         <div class="card-body">
-                            @if ($program->title)
+                            <div class="d-flex justify-content-center mb-3">
+                            @if ($program->image)
                                 <img src="{{ asset('storage/' . $program->image) }}" class="card-img-top" alt="Program Image">
                             @else
-                                <span>No Image</span>
+                                <i class="bi bi-card-image" style="font-size:6rem"></i>
                             @endif
+                            </div>
                             <div class="card-body">
                                 <h1>{{ $program->title }}</h1>
                                 <p class="card-text">Description: {{ $program->description }}</p>

@@ -7,6 +7,7 @@
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="/app.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" integrity="sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD" crossorigin="anonymous">
         <script src="/app.js"></script>        
     </head>
     <body>
@@ -56,11 +57,11 @@
                     <div class="card col-lg-6 shadow-lg rounded-4 p-4">
                         <div class="card-body">
                             <div class="d-flex justify-content-center mb-3">
-                                @if ($instructor->icon)
-                                    <img src="{{ asset('storage/' . $instructor->icon) }}" width="80" alt="Instructor Icon">
-                                @else
-                                    <span>No Icon</span>
-                                @endif
+                            @if ($instructor->icon)
+                                <img src="{{ asset('storage/' . $instructor->icon) }}" width="80" alt="{{ $instructor->name }}'s Icon">
+                            @else
+                                <i class="bi bi-person-circle" style="font-size:5rem"></i>
+                            @endif
                             </div>
                             <div class="card-body">
                                 <h1>{{ $instructor->name }}</h1>

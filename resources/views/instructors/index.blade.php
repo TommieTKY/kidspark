@@ -71,7 +71,7 @@
 
                             <div class="pt-4 text-center">
                             @if ($instructor->icon)
-                                <img src="{{ asset('storage/' . $instructor->icon) }}" class="card-img-top d-block mx-auto" style="max-height: 8rem; width: auto;" alt="Program Image">
+                                <img src="{{ asset('storage/' . $instructor->icon) }}" class="card-img-top d-block mx-auto" style="max-height: 8rem; width: auto;" alt="{{ $instructor->name }}'s Icon">
                             @else
                                 <i class="bi bi-person-circle" style="font-size:5rem"></i>
                             @endif
