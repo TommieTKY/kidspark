@@ -74,7 +74,13 @@
                                 </ul>
                             </div>
                             <div class="text-center">
-                                <a href="{{ url('/console/programs') }}" class="btn btn-danger">Back to List</a>
+                                <a href="{{ route('programs.index') }}" class="btn btn-secondary">Back to List</a>
+                                <a href="{{ route('programs.edit', $program->id) }}" class="btn btn-warning">Edit</a>
+                                <form action="{{ route('programs.destroy', $program->id) }}" method="POST" class="d-inline">
+                                    {{ csrf_field() }}
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this program?')">Delete</button>
+                                </form>
                             </div>
                         </div>
                     </div>

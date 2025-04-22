@@ -78,14 +78,14 @@
                             </div>
 
                             <div class="card-body text-center">
-                                <p class="card-text">Teaching Programs:</p>
-                                <ul class="mb-3">
+                                <p class="card-text mb-1">Teaching Programs:</p>
+                                <div class="">
                                     @forelse($instructor->programs as $program)
                                         <a href="{{ route('programs.show', $program->id) }}"><span class="badge bg-danger-subtle text-black fw-normal">{{ $program->title }}</span></a>
                                     @empty
-                                        <li class="list-group-item">No programs assigned yet.</li>
+                                        <span class="list-group-item">No programs assigned yet.</span>
                                     @endforelse
-                                </ul>
+                                </div>
                             </div>
 
                             <div class="card-footer">

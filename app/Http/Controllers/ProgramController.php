@@ -61,7 +61,7 @@ class ProgramController extends Controller
 
         $program->update($data); 
         $program->instructors()->sync($request->input('instructors'));
-        return redirect()->route('programs.index')
+        return redirect()->route('programs.show', $program->id)
             ->with('message', 'Program has been updated!');
     }
 

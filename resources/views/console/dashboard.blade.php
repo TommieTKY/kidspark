@@ -51,23 +51,28 @@
         </nav>
 
         <div class="container mt-4">
-            <h1 class="display-6">Programs & Instructors Dashboard</h1>
+            <h1 class="display-6">KidSpark Dashboard</h1>
             <div class="d-flex justify-content-center">
                 <div class="row mt-4">
                     <div class="col-sm-4">
                         <div class="card p-4 text-bg-light">
                             <div class="card-body">
-                                <h2 class="card-title">Manage Programs</h2>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <h2 class="card-title">Programs Dashboard</h2>
+                                <p class="card-text">
+                                Centralize all your enrichment offerings in one place—create new programs, update details, assign instructors, and retire old courses with just a few clicks.
+                                </p>
                                 <a href="/console/programs" class="btn btn-danger">Manage Programs</a>
+
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="card p-4 text-bg-light">
                             <div class="card-body">
-                                <h2 class="card-title">Manage Instructors</h2>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <h2 class="card-title">Instructors Dashboard</h2>
+                                <p class="card-text">
+                                View, add, or update instructor profiles. Assign them to programs and keep your teaching team organized and up to date.
+                                </p>
                                 <a href="/console/instructors" class="btn btn-danger">Manage Instructors</a>
                             </div>
                         </div>
@@ -75,8 +80,10 @@
                     <div class="col-sm-4">
                         <div class="card p-4 text-bg-light">
                             <div class="card-body">
-                                <h2 class="card-title">Manage Users</h2>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <h2 class="card-title">Users Dashboard</h2>
+                                <p class="card-text">
+                                View, edit, and control user access. Keep your user database organized and up to date.
+                                </p>
                                 <a href="/console/users" class="btn btn-danger">Manage Users</a>
                             </div>
                         </div>
