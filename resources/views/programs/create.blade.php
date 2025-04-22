@@ -90,25 +90,35 @@
                     <label for="price" class="form-label">Price:</label>
                     <input type="number" class="form-control" name="price" placeholder="Price" value="{{ old('price') }}" required>
                 </div>
+                
+                <div class="mb-3">
+                    <label for="instructors" class="form-label d-block mb-2">Instructors:</label>
+                    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                        @php
+                            $checked = old('instructors', []);
+                        @endphp
 
-                <div>
-                    <label for="instructors" class="form-label">Instructors:</label>
-                    @php
-                        $checked = old('instructors');
-                    @endphp
-
-                    @foreach($instructors as $instructor)
-                            <input
-                                type="checkbox"
-                                name="instructors[]"
-                                value="{{ $instructor->id }}"
-                            >
-                            {{ $instructor->name }}
-                        </label>
-                    @endforeach
+                        @foreach($instructors as $instructor)
+                            @php
+                                $id = 'instructor-' . $instructor->id;
+                            @endphp
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    name="instructors[]"
+                                    id="{{ $id }}"
+                                    value="{{ $instructor->id }}"
+                                    autocomplete="off"
+                                    {{ in_array($instructor->id, $checked) ? 'checked' : '' }}
+                                >
+                                <label class="btn btn-outline-danger" for="{{ $id }}">
+                                    {{ $instructor->name }}
+                                </label>
+                        @endforeach
+                    </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Add Program</button>
+                <button type="submit" class="btn btn-danger">Add Program</button>
                 <a href="{{ route('programs.index') }}" class="btn btn-secondary">Back to Program List</a>
             </form>
         </div>

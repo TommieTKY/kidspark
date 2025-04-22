@@ -51,17 +51,35 @@
         </nav>
 
         <main>
-            <h1>{{ $program->title }}</h1>
-            <p>{{ $program->description }}</p>
-            <p>{{ $program->image }}</p>
-            <p>{{ $program->price }}</p>
-            <ul>
-                @forelse($program->instructors as $instructor)
-                    <li>{{ $instructor->name }}</li>
-                @empty
-                    <li>No instructors assigned.</li>
-                @endforelse
-            </ul>
+            <div class="container my-5">
+                <div class="d-flex justify-content-center">
+                    <div class="card col-lg-6 shadow-lg rounded-4 p-4">
+                        <div class="card-body">
+                            @if ($program->title)
+                                <img src="{{ asset('storage/' . $program->image) }}" class="card-img-top" alt="Program Image">
+                            @else
+                                <span>No Image</span>
+                            @endif
+                            <div class="card-body">
+                                <h1>{{ $program->title }}</h1>
+                                <p class="card-text">Description: {{ $program->description }}</p>
+                                <p class="card-text">Price: ${{ $program->price }}</p>
+                                <p class="card-text">Instructors:</p>
+                                <ul class="list-group mb-3">
+                                    @forelse($program->instructors as $instructor)
+                                        <li class="list-group-item">{{ $instructor->name }}</li>
+                                    @empty
+                                        <li class="list-group-item">No instructors assigned.</li>
+                                    @endforelse
+                                </ul>
+                            </div>
+                            <div class="text-center">
+                                <a href="{{ url('/console/programs') }}" class="btn btn-danger">Back to List</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

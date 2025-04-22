@@ -97,26 +97,35 @@
                     <label for="bio" class="form-label">Bio:</label>
                     <textarea class="form-control" name="bio" id="bio" rows="3" required>{{ old('bio', $instructor->bio) }}</textarea>
                 </div>
+                
+                <div class="mb-3">
+                    <label for="programs" class="form-label d-block mb-2">Programs:</label>
+                    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                        @php
+                            $checked = old('programs', $instructor->programs->pluck('id')->toArray());
+                        @endphp
 
-                <div>
-                    <label for="programs" class="form-label">Programs:</label>
-                    @php
-                        $checked = old('programs', $instructor->programs->pluck('id')->toArray());
-                    @endphp
-
-                    @foreach($programs as $program)
-                            <input
-                                type="checkbox"
-                                name="programs[]"
-                                value="{{ $program->id }}"
-                                {{ in_array($program->id, $checked) ? 'checked' : '' }}
-                            >
-                            {{ $program->title }}
-                        </label>
-                    @endforeach
+                        @foreach($programs as $program)
+                            @php
+                                $id = 'program-' . $program->id;
+                            @endphp
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    name="programs[]"
+                                    id="{{ $id }}"
+                                    value="{{ $program->id }}"
+                                    autocomplete="off"
+                                    {{ in_array($program->id, $checked) ? 'checked' : '' }}
+                                >
+                                <label class="btn btn-outline-danger" for="{{ $id }}">
+                                    {{ $program->title }}
+                                </label>
+                        @endforeach
+                    </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Update Instructor</button>
+                <button type="submit" class="btn btn-danger">Update Instructor</button>
                 <a href="{{ route('instructors.index') }}" class="btn btn-secondary">Back to List</a>
             </form>
         </div>

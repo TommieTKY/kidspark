@@ -51,32 +51,34 @@
         </nav>
 
         <div class="container mt-4">
-            <h2>Programs & Instructors Dashboard</h2>
-            <div class="row mt-4">
-                <div class="col-sm-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Manage Programs</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="/console/programs" class="btn btn-primary">Manage Programs</a>
+            <h1 class="display-6">Programs & Instructors Dashboard</h1>
+            <div class="d-flex justify-content-center">
+                <div class="row mt-4">
+                    <div class="col-sm-4">
+                        <div class="card p-4 text-bg-light">
+                            <div class="card-body">
+                                <h2 class="card-title">Manage Programs</h2>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <a href="/console/programs" class="btn btn-danger">Manage Programs</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Manage Instructors</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="/console/instructors" class="btn btn-primary">Manage Instructors</a>
+                    <div class="col-sm-4">
+                        <div class="card p-4 text-bg-light">
+                            <div class="card-body">
+                                <h2 class="card-title">Manage Instructors</h2>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <a href="/console/instructors" class="btn btn-danger">Manage Instructors</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Manage Users</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="/console/users/list" class="btn btn-primary">Manage Users</a>
+                    <div class="col-sm-4">
+                        <div class="card p-4 text-bg-light">
+                            <div class="card-body">
+                                <h2 class="card-title">Manage Users</h2>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <a href="/console/users/list" class="btn btn-danger">Manage Users</a>
+                            </div>
                         </div>
                     </div>
                 </div>
