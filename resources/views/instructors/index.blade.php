@@ -73,7 +73,7 @@
                             @if ($instructor->icon)
                                 <img src="{{ asset('storage/' . $instructor->icon) }}" class="card-img-top d-block mx-auto" style="max-height: 8rem; width: auto;" alt="Program Image">
                             @else
-                                <i class="bi bi-card-image" style="font-size:6rem"></i>
+                                <i class="bi bi-person-circle" style="font-size:5rem"></i>
                             @endif
                             </div>
 
@@ -81,7 +81,7 @@
                                 <p class="card-text">Teaching Programs:</p>
                                 <ul class="mb-3">
                                     @forelse($instructor->programs as $program)
-                                        <span class="badge bg-danger-subtle text-black fw-normal">{{ $program->title }}</span>
+                                        <a href="{{ route('programs.show', $program->id) }}"><span class="badge bg-danger-subtle text-black fw-normal">{{ $program->title }}</span></a>
                                     @empty
                                         <li class="list-group-item">No programs assigned yet.</li>
                                     @endforelse
@@ -90,7 +90,7 @@
 
                             <div class="card-footer">
                                 <small class="text-body-secondary d-flex justify-content-evenly align-items-center gap-2">
-                                    <a href="{{ route('instructors.show', $instructor->id) }}" class="btn btn-info btn-sm">View</a>
+                                    <a href="{{ route('instructors.show', $instructor->id) }}" class="btn btn-info btn-sm">Details</a>
                                     <a href="{{ route('instructors.edit', $instructor->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                     <form action="{{ route('instructors.destroy', $instructor->id) }}" method="POST" class="d-inline">
                                         {{ csrf_field() }}

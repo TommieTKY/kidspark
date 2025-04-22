@@ -67,23 +67,23 @@
                 @foreach($programs as $program)
                     <div class="col">
                         <div class="card h-100">
-                            <h1 class="card-header bg-danger-subtle fs-3">{{ $program->title }}</h1>
+                            <h1 class="card-header bg-danger-subtle fs-4">{{ $program->title }}</h1>
 
-                            <div class="pt-4 text-center">
+                            <div class="text-center p-4">
                             @if ($program->image)
-                                <img src="{{ asset('storage/' . $program->image) }}" class="card-img-top d-block mx-auto" style="max-height: 14rem; width: auto;" alt="Program Image">
+                                <img src="{{ asset('storage/' . $program->image) }}" class="card-img-top d-block mx-auto" style="max-height: 12rem; width: auto;" alt="Program Image">
                             @else
                                 <i class="bi bi-card-image" style="font-size:6rem"></i>
                             @endif
                             </div>
 
                             <div class="card-body text-center">
-                                <p class="card-title">${{ $program->price }}</p>
+                                <p class="card-text">{{ $program->description }}</p>
                             </div>
 
                             <div class="card-footer">
                                 <small class="text-body-secondary d-flex justify-content-evenly align-items-center gap-2">
-                                    <a href="{{ route('programs.show', $program->id) }}" class="btn btn-info btn-sm">View</a>
+                                    <a href="{{ route('programs.show', $program->id) }}" class="btn btn-info btn-sm">Details</a>
                                     <a href="{{ route('programs.edit', $program->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                     <form action="{{ route('programs.destroy', $program->id) }}" method="POST" class="d-inline">
                                         {{ csrf_field() }}

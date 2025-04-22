@@ -66,10 +66,10 @@
                                 <h1>{{ $instructor->name }}</h1>
                                 <p class="card-text">{{ $instructor->bio }}</p>
                                 <p class="card-text">Email: {{ $instructor->email }}</p>
-                                <p class="card-text">Programs:</p>
+                                <p class="card-text">Teaching Programs:</p>
                                 <ul class="list-group mb-3">
                                     @forelse($instructor->programs as $program)
-                                        <li class="list-group-item">{{ $program->title }}</li>
+                                        <li class="list-group-item list-group-item-action"><a class="link-danger link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="{{ route('programs.show', $program->id) }}">{{ $program->title }}</a></li>
                                     @empty
                                         <li class="list-group-item">No programs assigned.</li>
                                     @endforelse

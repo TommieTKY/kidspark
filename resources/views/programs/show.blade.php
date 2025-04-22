@@ -67,7 +67,7 @@
                                 <p class="card-text">Instructors:</p>
                                 <ul class="list-group mb-3">
                                     @forelse($program->instructors as $instructor)
-                                        <li class="list-group-item">{{ $instructor->name }}</li>
+                                        <li class="list-group-item list-group-item-action"><a class="link-danger link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="{{ route('instructors.show', $instructor->id) }}">{{ $instructor->name }}</a></li>
                                     @empty
                                         <li class="list-group-item">No instructors assigned.</li>
                                     @endforelse
