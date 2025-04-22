@@ -60,47 +60,37 @@
             <div class="d-flex mb-2">
                 <h2>Manage Programs</h2>
             </div>
-            <div class="d-flex mb-4">
-                <a href="{{ route('programs.create')}}" class="btn btn-success">New Program</a>
-            </div>
-
-            <div class="table-responsive">
-                <table class="table table-striped table-bordered">
-                    <thead class="table-danger">
-                        <tr>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>Image</th>
-                            <th>Price</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($programs as $program)
-                            <tr>
-                            <td><a href="{{ route('programs.show', $program) }}">{{ $program->title}}</a></td>
-                            <td>{{ $program->description}}</td>
-                            <td>
+            <a href="{{ route('programs.create')}}" class="btn btn-danger">New Program</a>
+            <div class="row mt-3">
+                @foreach($programs as $program)
+                    <div class="col-sm-4">
+                        <div class="card shadow-lg rounded-4 p-4 mt-4" style="min-height: 580px;">
+                            <div class="card-body">
                                 @if ($program->image)
-                                    <img src="{{ asset('storage/' . $program->image) }}" width="30" alt="Image">
+                                    <img src="{{ asset('storage/' . $program->image) }}" class="card-img-top mb-2" alt="Program Image">
                                 @else
                                     <span>No Image</span>
                                 @endif
-                            </td>
-                            <td>${{ $program->price}}</td>
-                            <td>
-                                <a href="{{ route('programs.edit', $program->id)}}" class="btn btn-primary btn-sm">Edit</a>
-                                <form action="{{ route('programs.destroy', $program->id) }}" method="POST" class="d-inline">
-                                    {{ csrf_field() }}
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this program?')">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                                <h3 class="card-text text-center">
+                                    {{ $program->title }}
+                                </h3>
+                                <div class="card-text text-center">
+                                    <p class="card-text">{{ $program->description }}</p>
+                                    <p class="card-text">${{ $program->price }}</p>
+                                    <a href="{{ route('programs.edit', $program->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                    <form action="{{ route('programs.destroy', $program->id) }}" method="POST" class="d-inline">
+                                        {{ csrf_field() }}
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this program?')">Delete</button>
+                                    </form>
+                                    <a href="{{ route('programs.show', $program->id) }}" class="btn btn-info btn-sm">View</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
             </div>
+            
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

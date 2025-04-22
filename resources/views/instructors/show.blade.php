@@ -22,10 +22,10 @@
                             <a class="nav-link" href="{{ url('/console/dashboard') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{ url('/console/programs') }}">Programs</a>
+                            <a class="nav-link" href="{{ url('/console/programs') }}">Programs</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/console/instructors') }}">Instructors</a>
+                            <a class="nav-link active" href="{{ url('/console/instructors') }}">Instructors</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav">
@@ -51,17 +51,37 @@
         </nav>
 
         <main>
-            <h1>{{ $instructor->name }}</h1>
-            <p>{{ $instructor->email }}</p>
-            <p>{{ $instructor->icon }}</p>
-            <p>{{ $instructor->bio }}</p>
-            <ul>
-                @forelse($instructor->programs as $program)
-                    <li>{{ $program->title }}</li>
-                @empty
-                    <li>No programs assigned.</li>
-                @endforelse
-            </ul>
+            <div class="container my-5">
+                <div class="d-flex justify-content-center">
+                    <div class="card col-lg-6 shadow-lg rounded-4 p-4">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-center mb-3">
+                                @if ($instructor->icon)
+                                    <img src="{{ asset('storage/' . $instructor->icon) }}" width="80" alt="Instructor Icon">
+                                @else
+                                    <span>No Icon</span>
+                                @endif
+                            </div>
+                            <div class="card-body">
+                                <h1>{{ $instructor->name }}</h1>
+                                <p class="card-text">Email: {{ $instructor->email }}</p>
+                                <p class="card-text">Bio: {{ $instructor->bio }}</p>
+                                <p class="card-text">Programs:</p>
+                                <ul class="list-group mb-3">
+                                    @forelse($instructor->programs as $program)
+                                        <li class="list-group-item">{{ $program->title }}</li>
+                                    @empty
+                                        <li class="list-group-item">No programs assigned.</li>
+                                    @endforelse
+                                </ul>
+                            </div>
+                            <div class="text-center">
+                                <a href="{{ url('/console/instructors') }}" class="btn btn-danger">Back to List</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
