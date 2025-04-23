@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="/app.css">
         <script src="/app.js"></script>        
     </head>
-    <body>
+    <body class="d-flex flex-column min-vh-100">
         <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/console/dashboard') }}">KidSpark</a>
@@ -50,24 +50,23 @@
             </div>
         </nav>
 
-        <div class="container mt-4">
+        <div class="container mt-4 flex-grow-1">
             <h1 class="display-6">KidSpark Dashboard</h1>
             <div class="d-flex justify-content-center">
                 <div class="row mt-4">
                     <div class="col-sm-4">
-                        <div class="card p-4 text-bg-light">
+                        <div class="card p-4 text-bg-light h-100">
                             <div class="card-body">
                                 <h2 class="card-title">Programs Dashboard</h2>
                                 <p class="card-text">
                                 Centralize all your enrichment offerings in one place—create new programs, update details, assign instructors, and retire old courses with just a few clicks.
                                 </p>
                                 <a href="/console/programs" class="btn btn-danger">Manage Programs</a>
-
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-4">
-                        <div class="card p-4 text-bg-light">
+                        <div class="card p-4 text-bg-light h-100">
                             <div class="card-body">
                                 <h2 class="card-title">Instructors Dashboard</h2>
                                 <p class="card-text">
@@ -78,7 +77,7 @@
                         </div>
                     </div>
                     <div class="col-sm-4">
-                        <div class="card p-4 text-bg-light">
+                        <div class="card p-4 text-bg-light h-100">
                             <div class="card-body">
                                 <h2 class="card-title">Users Dashboard</h2>
                                 <p class="card-text">
@@ -90,7 +89,13 @@
                     </div>
                 </div>
             </div>
-
+            
         </div>
+        
+        <footer class="bg-danger text-white p-3 mt-4">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2025 KidSpark. All rights reserved.</p>
+            </div>
+        </footer>
     </body>
 </html>

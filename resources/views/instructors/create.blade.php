@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="/app.css">
         <script src="/app.js"></script>        
     </head>
-    <body>
+    <body class="d-flex flex-column min-vh-100">
         <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/console/dashboard') }}">KidSpark</a>
@@ -50,7 +50,7 @@
             </div>
         </nav>
 
-        <div class="container mt-4">
+        <div class="container mt-4 flex-grow-1">
             <h2>Add Instructor</h2>
 
             @if ($errors -> any())
@@ -122,6 +122,12 @@
                 <a href="{{ route('instructors.index') }}" class="btn btn-secondary">Back to List</a>
             </form>
         </div>
+
+        <footer class="bg-danger text-white p-3 mt-4">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2025 KidSpark. All rights reserved.</p>
+            </div>
+        </footer>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     </body>

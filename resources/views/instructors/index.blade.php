@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" integrity="sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD" crossorigin="anonymous">
         <script src="/app.js"></script>        
     </head>
-    <body>
+    <body class="d-flex flex-column min-vh-100">
         <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/console/dashboard') }}">KidSpark</a>
@@ -51,7 +51,7 @@
             </div>
         </nav>
 
-        <div class="container mt-4">
+        <div class="container mt-4 flex-grow-1">
             @if(session()->has('message'))
                 <div class="alert alert-success">
                     {{ session('message') }}
@@ -67,7 +67,7 @@
                 @foreach($instructors as $instructor)
                     <div class="col">
                         <div class="card h-100">
-                            <h1 class="card-header bg-danger-subtle fs-5">{{ $instructor->name }}</h1>
+                            <h1 class="card-header p-2 bg-danger-subtle fs-5 p-2">{{ $instructor->name }}</h1>
 
                             <div class="pt-4 text-center">
                             @if ($instructor->icon)
@@ -104,6 +104,12 @@
                 @endforeach                
             </div>
         </div>
+
+        <footer class="bg-danger text-white p-3 mt-4">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2025 KidSpark. All rights reserved.</p>
+            </div>
+        </footer>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     </body>

@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" integrity="sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD" crossorigin="anonymous">
         <script src="/app.js"></script>        
     </head>
-    <body>
+    <body class="d-flex flex-column min-vh-100">
         <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/console/dashboard') }}">KidSpark</a>
@@ -52,7 +52,7 @@
         </nav>
 
         <main>
-            <div class="container my-5">
+            <div class="container my-5 flex-grow-1">
                 <div class="d-flex justify-content-center">
                     <div class="card col-lg-6 shadow-lg rounded-4 p-4">
                         <div class="card-body">
@@ -90,6 +90,12 @@
                 </div>
             </div>
         </main>
+
+        <footer class="bg-danger text-white p-3 mt-4">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2025 KidSpark. All rights reserved.</p>
+            </div>
+        </footer>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
